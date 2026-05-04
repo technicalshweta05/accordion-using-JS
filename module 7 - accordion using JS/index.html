@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion using JS</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet" type="text/css">
+    
+
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            height:100vh;
+            background: #360033;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #0b8793, #360033);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #0b8793, #360033); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+        .container{
+            max-width: 700px;
+            border:1px solid grey;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 2px grey;
+            margin: 30px auto;
+            min-height: 400px;
+        }
+        .accordion{
+            padding:20px;
+            /* border:1px red solid; */
+            padding-bottom: 0px;
+        }
+        .title{
+            font-size: 25px;
+            font-weight: bold;
+            border-bottom: 1px solid lightgrey;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+
+        }
+        .content{
+            height:0px;
+            overflow: hidden;
+            transition: height 300ms;
+        }
+        p{
+            margin:5px 0px;
+        }
+        .active{
+            color:#348AC7;
+        }
+        .title>i{
+            transition: transform 300ms;
+        }
+        .active>i{
+            transform: rotate(90deg);
+            padding-right: 5px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="accordion">
+          <div class="title">
+              <i class="fa-solid fa-angle-right"></i> 1.What is an accordion?
+          </div>
+
+          <div class="content">
+             <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde praesentium culpa odit temporibus eum animi. Placeat debitis eveniet adipisci omnis necessitatibus, molestias labore est molestiae et assumenda, quas facere sed?
+             </p>
+             <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde praesentium culpa odit temporibus eum animi. Placeat debitis eveniet adipisci omnis necessitatibus, molestias labore est molestiae et assumenda, quas facere sed?
+             </p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="title">
+             <i class="fa-solid fa-angle-right"></i> 2.What is an accordion?
+          </div>
+
+          <div class="content">
+             <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde praesentium culpa odit temporibus eum animi. Placeat debitis eveniet adipisci omnis necessitatibus, molestias labore est molestiae et assumenda, quas facere sed?
+             </p>
+             <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde praesentium culpa odit temporibus eum animi. Placeat debitis eveniet adipisci omnis necessitatibus, molestias labore est molestiae et assumenda, quas facere sed?
+             </p>
+             <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde praesentium culpa odit temporibus eum animi. Placeat debitis eveniet adipisci omnis necessitatibus, molestias labore est molestiae et assumenda, quas facere sed?
+             </p>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="title">
+              <i class="fa-solid fa-angle-right"></i> 3.What is an accordion?
+          </div>
+
+          <div class="content">
+             <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde praesentium culpa odit temporibus eum animi. Placeat debitis eveniet adipisci omnis necessitatibus, molestias labore est molestiae et assumenda, quas facere sed?
+             </p>
+          </div>
+        </div>
+    </div>
+    
+</body>
+<script>
+    const titles=document.querySelectorAll(".title");
+
+    for(let t of titles){
+        t.addEventListener("click",
+            function(e){
+                const contentBox=e.target.nextElementSibling;
+                if(e.target.classList.contains('active')){
+
+                   e.target.classList.remove('active');
+
+                   contentBox.style.height="";
+                   contentBox.classList.remove("open");
+
+                }else{
+                    const currentActive=document.querySelector(".active");
+                    if(currentActive) currentActive.classList.remove("active");
+
+                    const currentOpen=document.querySelector(".open")
+                    if(currentOpen){
+                        currentOpen.style.height="";
+                        currentOpen.classList.remove("open");
+                    }
+                    // document.querySelector(".open").classList.remove("open");
+
+                    e.target.classList.add('active');
+                    contentBox.style.height=contentBox.scrollHeight + "px";//300px
+                    contentBox.classList.add("open");
+
+
+                }
+                
+                
+
+                
+
+            }
+        )
+    }
+</script>
+</html>
